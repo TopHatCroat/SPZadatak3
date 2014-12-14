@@ -1,13 +1,6 @@
+
 #include <iostream>
 using namespace std;
-
-struct element {
-	char ime[20];
-	char prezime[20];
-	char spol;
-	int datum[3];
-	int cetvorka[4];
-};
 
 struct red {
 	element popis[10000];
@@ -23,8 +16,6 @@ bool IsEmptyQ(red *Q){
 	if(AddOne(Q->rear) == Q->front) return true;
 	return false;
 }
-
-
 
 element FrontQ(red *Q){
 	if (IsEmptyQ(Q)){
