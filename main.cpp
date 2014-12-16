@@ -62,8 +62,8 @@ void generator(red *Q){
 		if(rand()%2) e.spol = 'z';
 		else e.spol = 'm';
 		
-		if(e.spol == 'm' && e.cetvorka[2] == 3) continue; //provjera musko/trudnica
-		
+		if(e.spol == 'm' && e.cetvorka[2] == 3 && trenutni % 2 ) continue; //provjera musko/trudnica
+		else e.spol = 'z';
 		e.datum[0] = rand()%30+1;
 		e.datum[1] = rand()%12+1;
 		e.datum[2] = 1996 - (rand()%75);
@@ -71,6 +71,8 @@ void generator(red *Q){
 		if(e.datum[2] < 1953 && e.cetvorka[2] == 3) continue; //provjera stariji od 45/trudnice
 		if(e.datum[2] > 1943 && e.cetvorka[2] == 4) continue; //provjera mladi od 55/umirovljenici
 		
+		
+	
 		EnQueueQ(e, Q);
 		trenutni++;
 	}
@@ -137,7 +139,9 @@ void ispisR(red *Q, int usluga){
         DeQueueQ(vicious);
         brojac++;
     }
+    cout << "================================================" << endl;
     cout << " ***** Broj ljudi u redu: " << brojac << " *****" << endl;
+    cout << "================================================" << endl;
 }
 
 void sort(red *Q, bool uzlazno){
@@ -182,7 +186,7 @@ void horoskop(red *Q){
 	
 	while(!IsEmptyQ(Q)){
         delicious = FrontQ(Q);
-        if(delicious.cetvorka[3] == 3 && ((delicious.datum[0] >= 22 && delicious.datum[1] == 12) || (delicious.datum[0] <= 20 && delicious.datum[1] == 1))){
+        if(delicious.cetvorka[3] == 3 && ((delicious.datum[0] >= 22 && delicious.datum[1] == 12) || (delicious.datum[0] <= 20 && delicious.datum[1] == 1)) && delicious.datum[2] > 1974){
 			ispisE(delicious);
         }
 		EnQueueQ(delicious, vicious);
